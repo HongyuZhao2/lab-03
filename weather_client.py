@@ -7,17 +7,26 @@ from typing import Dict
 URL = "https://api.openweathermap.org/data/2.5/weather"
 
 # TODO: get an API key from openweathermap.org and fill it in here!
-API_KEY = ""
+API_KEY = "0f8407bc97b96e79a10b7f19ceed395b"
 
 def get_weather(city) -> Dict:
     res = requests.get(URL, params={"q": city, "appid": API_KEY})
     return res.json()
 
 # TODO: try connecting to a another API! e.g. reddit (https://www.reddit.com/dev/api/)
+def get_joke() -> Dict:
+    JOKE_URL = "https://official-joke-api.appspot.com/random_joke"
+    res = requests.get(JOKE_URL)
+    return res.json()
 
 def main():
     temp = get_weather("London")
     print(temp)
+
+    joke = get_joke()
+    print(joke["setup"])
+    print(joke["punchline"])
+
 
 if __name__ == "__main__":
     main()
